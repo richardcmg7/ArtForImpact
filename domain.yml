@@ -1,0 +1,191 @@
+version: "3.1"
+
+intents:
+  - emergency_report
+  - sisben_affiliation
+  - EPS_affiliation
+  - vaccination
+  - eviction
+  - statute_general_info
+  - yes_answer
+  - statute_second_step
+  - statute_third_step
+  - inform_regular_status
+  - entry_date
+  - no_summary_proof
+  - rumv_specific_info
+  - invalid_rumv
+  - rumv_wrong_password
+  - rumv_invalid_appointment
+  - rumv_invalid_docs
+  - statute_non_venezuelan
+  - seek_for_regularization
+  - update_pep
+  - punto_visible
+  - get_legal_assistance
+  - migration_routes
+  - greetings
+  - goodbyes
+  - giving_location
+  - human_agent
+  - accomodation_or_shelter
+  - medical_assistance
+  - education
+  - employment
+  - bank_services
+  - contact_info
+  - no_answer
+
+entities:
+  - health_attention
+  - emergency_type
+  - sisben
+  - venezuelan_id
+  - affiliation
+  - registration
+  - heatlh_institutions
+  - health_institution
+  - eps
+  - covid
+  - priority_population
+  - temporal_migratory_statute
+  - rumv
+  - time_expression
+  - time_question
+  - biometric_appointment
+  - generic_appointment
+  - password
+  - citizenship
+  - irregular_status
+  - passport
+  - old_permit
+  - medical_treatment
+  - chronic_diseases
+  - location
+  - specific_place
+  - legal_issue
+
+slots:
+  lat_lon:
+    type: any
+    influence_conversation: false
+    mappings:
+      - type: custom
+  location:
+    type: list
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: location
+  emergency_type:
+    type: categorical
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: emergency_type
+        intent: emergency_report
+    values:
+      - sexual_violence
+      - crime
+      - emotional_distress
+      - health_emergency
+      - other
+  old_permit:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: old_permit
+  time_expression:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: time_expression
+  time_question:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: time_expression
+
+responses:
+  utter_please_rephrase:
+    - text: Lo siento, no pude entenderte bien pana. ¿Puedes reescribir tu mensaje?
+  utter_greet:
+    - text: Hola, soy un bot. ¿En qué te puedo ayudar?
+  utter_ask_location:
+    - text: ¿Dónde ocurrió el incidente? Por favor, dime la ubicación en formato <municipio, departamento>. Por ejemplo, <Cúcuta, Norte de Santander>.
+  utter_wrong_location:
+    - text: No pude entender la ubicación. Por favor, revisa que no tengas errores de escritura. Recuerda usar el formato <municipio, departamento>. Por ejemplo, <Cúcuta, Norte de Santander>.
+  utter_goodbye:
+    - text: Espero haber sido de ayuda para ti. Hasta pronto :)
+  utter_more_help:
+    - text: Cuéntame, ¿en qué otra cosa te puedo ayudar?
+  utter_sisben_affiliation_info:
+    - text: Hola, para poder afiliarte al SISBÉN debes contar con varios requisitos y seguir unos pasos, pero tranquis que yo te lo explico todo, solo dale clic a este link - [https://youtu.be/mL8E-mgEwaE](https://youtu.be/mL8E-mgEwaE)
+  utter_eps_affiliation_info:
+    - text: Las EPS son "Entidades Promotoras de Salud" están establecidas por empresas que prestan servicios sanitarios y médicos para el sistema de salud de Colombia, dichas entidades son las responsables de la afiliación, el registro de los afiliados y del recaudo de nuestras cotizaciones. \n  Seguro te preguntarás ¿Pero cómo me afilio a esa vaina? ¡Pues te tengo la respuesta panita! Acá te dejo una publicación explicando el proceso paso a paso [https://www.facebook.com/319662435565899/posts/683082179223921/](https://www.facebook.com/319662435565899/posts/683082179223921/)
+  utter_covid19_vaccination_question:
+    - text: ¿Te refieres a la vacuna contra el COVID-19?
+  utter_covid19_vaccination_yes_answer:
+    - text: En ese caso debes acudir a la secretaría de salud o llamar para que te informen sobre los puntos de vacunación, debes asistir con el RUMV y tu documento de identidad para poder ser vacunado.
+  utter_covid19_vaccination_no_answer:
+    - text: En ese caso debes acudir con tu EPS, SISBÉN u hospital más cercano para que te ayuden con esto.
+  utter_vaccination_kids:
+    - text: Debes acudir con tu EPS o SISBÉN, en caso de no contar con alguno de estos dos, puedes ir al hospital o centro de vacunación más cercano para recibir las vacunas, tienes que tener en cuenta que al momento de asistir, debes ir con la partida de nacimiento del menor y documento de identidad de la mamá o el papá.
+  utter_eviction:
+    - text: ¡Tranqui! Si te están desalojando de tu vivienda, tienes que saber que tus derechos cuentan, no sientas que estás sol@. Acá te explico todo lo que tienes que saber  - [https://www.facebook.com/319662435565899/posts/675577896641016/](https://www.facebook.com/319662435565899/posts/675577896641016/). Fuente - Coordinación para Refugiados y Migrantes de Venezuela.
+  utter_rmuv_direct_questions:
+    - text: Para que te puedan dar el permiso debes pasar por dos fases primero, 1️⃣la primera es el RUMV, 2️⃣la segunda la toma de datos biométricos, que para esta debes agendar la cita y 3️⃣por último, vendría la entrega de documentos.
+  utter_invalid_rumv:
+    - text: En estos casos es necesario que acudas ¡YA! al punto visible más cercano de tu localidad para que te ayuden con esto o te comuniques vía telefónica con Migración Colombia. 
+  utter_password_answer:
+    - text: Cuando realices tu contraseña para el RUMV, debes tener una clave alfanumérica, es decir, números y letras en mayúsculas y minúsculas.
+  utter_password_advise:
+    - text: Nani dato - Si aún luego de hacer esto el problema persiste, debes acudir al punto visible más cercano de tu localidad para que te ayuden con esto.
+  utter_invalid_appointment:
+    - text: En estos casos es necesario que acudas ¡YA! al punto visible más cercano de tu localidad para que te ayuden con esto o te comuniques vía telefónica con Migración Colombia.
+  utter_invalid_docs_1:
+    - text: ¡Traaaaanquis! Que yo te lo explico todo. 
+  utter_invalid_docs_2:
+    - text: Verifica que estés colocando la imagen en el formato y tamaño adecuado.
+  utter_invalid_docs_3:
+    - text: ✅ La foto de la persona - 3x4 jpg o png y que pesen menos de 5MB.\n✅ La foto del documento de identidad - en formato jpg o png y que pesen menos de 5MB.\n✅ La prueba sumaria - formato PDF que pesen menos de 5MB.
+  utter_invalid_docs_4:
+    - text: La prueba sumaria solo es en caso de que no tengas algún permiso, porque si cuentas con uno, no te pediré adjuntar una prueba. Seguro te preguntarás, ¿Cómo se ponen esos formatos? ¡No te enrolles la vida! Aquí te dejo unas aplicaciones que pueden ayudarte.
+  utter_invalid_docs_5:
+    - text: ✅ Para poner la foto 3x4 [https://play.google.com/store/apps/details?id=com.ftapps.fotos3x4](https://play.google.com/store/apps/details?id=com.ftapps.fotos3x4)
+  utter_invalid_docs_6:
+    - text: ✅ Para ponerla en JPG O PNG [https://play.google.com/store/apps/details?id=com.handycloset.android.jpegpng](https://play.google.com/store/apps/details?id=com.handycloset.android.jpegpng)
+  utter_invalid_docs_7:
+    - text: ✅ Para ponerla en PDF [https://play.google.com/store/apps/details?id=com.handycloset.android.jpegpng](https://play.google.com/store/apps/details?id=com.handycloset.android.jpegpng)
+  utter_invalid_docs_8:
+    - text: Nani dato - Si aún luego de hacer esto el problema persiste, debes acudir al punto visible más cercano de tu localidad para que te ayuden con esto.
+  utter_biometric_kids_1:
+    - text: Holaa, los menores de 7 años no harán parte de la segunda fase del sistema biométrico, porque no están en la edad todavía para eso, sin embargo, te sugerimos que lo lleves contigo el día de tu cita biométrica para que les tomen la foto del permiso.
+  utter_biometric_kids_2:
+    - text: Ten en cuenta que de 7 años en adelante si deben tener su cita, pues tomarán sus datos biométricos. 
+  utter_non_venezuelan:
+    - text: Holaa, no, no puede optar por el estatuto porque esto es únicamente para venezolanos. Deberás tramitar una visa para estar de manera regular en Colombia.
+  utter_irregular_trail:
+    - text: Pana, existe un nuevo permiso para los venezolanos en Colombia, pero, cómo ingresaste por trochas pierdes la oportunidad de ser parte de esto, pues es necesario que hayas sellado tu pasaporte.
+  utter_get_passport:
+    - text: Holaaa, pues te cuento que actualmente las relaciones diplomáticas entre Venezuela y Colombia están quebrantadas, por lo que no existe un ente dentro del territorio colombiano donde puedas tramitar tu pasaporte. La única manera de realizar este proceso es que te dirijas a las oficinas del SAIME en Venezuela. Quien te quiera cobrar por ese trámite acá en Colombia te está estafando, así que pendiente con eso mi pana.
+  utter_update_permit:
+    - text: ¡Panaaa estás desactualizado! Pero tranqui que llegaste al lugar correcto, el PEP, PEPFF o PEP-RAMV, fueron permisos emitidos por Migración Colombia para que pudiéramos estar de manera regular y gozar de diferentes beneficios, como salud, educación, poder trabajar tranquilamente y entre otros más, peroooo, todos estos permisos fueron abarcados por uno solo, el ✅ "PPT" Permiso Por Protección Temporal. ¿Quieres saber más sobre esto? 
+  utter_more_info_in_update:
+    - text: El PPT es...
+  utter_update_pep:
+    - text: ¡Traaaaanquis! El director de Migración Colombia anunció que todos los ✅ PEP han sido extendido por dos años más mientras nos otorgan el nuevo permiso, ahora debemos es tramitar el certificado de validez en la página web de Migración Colombia, acá te dejo el link para que hagas el proceso.
+
+actions:
+  - action_emergency_service
+  - action_validate_slot_mappings
+  - utter_ask_location
+  - utter_goodbye
+  - utter_greet
+  - utter_please_rephrase
+  - validate_emergency_form
+
+forms:
+  emergency_form:
+    required_slots:
+      - location
