@@ -1,0 +1,216 @@
+version: "3.1"
+
+stories:
+
+- story: emergency_story_crime
+  steps:
+  - intent: greetings
+  - action: utter_greet
+  - intent: emergency_report
+  - action: emergency_form
+  - active_loop: emergency_form
+  - slot_was_set:
+    - requested_slot: emergency_type
+  # - slot_was_set:
+  #   - emergency_type: crime
+  - slot_was_set:
+    - requested_slot: location
+  - slot_was_set:
+    - lat_lon: 4.4471495,-69.7975845
+  - slot_was_set:
+    - location:
+      - Cumaribo
+      - Vichada
+  - slot_was_set:
+    - lat_lon: 4.4471495,-69.7975845
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_emergency_service
+  - intent: goodbyes
+  - action: utter_goodbye
+
+- story: sisben_affiliation_dialog
+  steps:
+  - intent: sisben_affiliation
+    entities:
+    - sisben: sisben
+  - action: utter_sisben_affiliation_info
+  - action: utter_more_help
+
+- story: eps_affiliation_dialog
+  steps:
+  - intent: EPS_affiliation
+    entities:
+    - eps: eps
+  - action: utter_eps_affiliation_info
+  - action: utter_more_help
+
+- story: vaccination_kids
+  steps:
+  - intent: vaccination
+    entities:
+    - priority_population: niño
+    - priority_population: bebé
+    - priority_population: menor de edad
+  - action: utter_vaccination_kids
+  - action: utter_more_help
+
+- story: vaccination_covid19
+  steps:
+  - intent: vaccination
+  - action: utter_covid19_vaccination_question
+  - intent: yes_answer
+  - or:
+    - intent: vaccination
+      entities:
+      - COVID: covid
+  - action: utter_covid19_vaccination_yes_answer
+  - action: utter_more_help
+
+- story: vaccination_adults
+  steps:
+  - intent: vaccination
+  - action: utter_covid19_vaccination_question
+  - intent: no_answer
+  - action: utter_covid19_vaccination_no_answer
+  - action: utter_more_help
+
+- story: eviction_vulnerable_people
+  steps:
+  - intent: eviction
+  - action: utter_eviction
+  - action: utter_more_help
+
+- story: rumv_direct_questions
+  steps:
+  - intent: rumv_specific_info
+  - slot_was_set:
+    - requested_slot: time_expression
+  - slot_was_set:
+    - requested_slot: time_question
+  - action: utter_rmuv_direct_questions
+  - action: utter_more_help
+
+- story: invalid_rumv
+  steps:
+  - intent: invalid_rumv
+  - action: utter_rmuv_direct_questions
+  - action: utter_invalid_rumv
+  - action: utter_more_help
+
+- story: rumv_invalid_password
+  steps:
+  - intent: rumv_wrong_password 
+  - action: utter_password_answer
+  - action: utter_password_advise
+  - action: utter_more_help
+
+- story: rumv_invalid_appointment_question
+  steps:
+  - intent: rumv_invalid_appointment 
+  - action: utter_invalid_appointment
+  - action: utter_more_help
+
+- story: rumv_invalid_documents_question
+  steps:
+  - intent: rumv_invalid_docs
+  - action: utter_invalid_docs_1
+  - action: utter_invalid_docs_2
+  - action: utter_invalid_docs_3
+  - action: utter_invalid_docs_4
+  - action: utter_invalid_docs_5
+  - action: utter_invalid_docs_6
+  - action: utter_invalid_docs_7
+  - action: utter_more_help
+
+- story: rumv_invalid_appointment_question
+  steps:
+  - intent: rumv_invalid_appointment 
+  - action: utter_invalid_appointment
+  - action: utter_more_help
+
+- story: biometric_appointment_for_kids
+  steps:
+  - intent: rumv_specific_info
+    entities:
+      - priority_population: niño
+      - priority_population: bebé
+      - priority_population: menor de edad
+  - action: utter_biometric_kids_1
+  - action: utter_biometric_kids_2
+  - action: utter_more_help
+
+- story: statute_for_non_venezuelan_people
+  steps:
+  - intent: statute_non_venezuelan
+  - action: utter_non_venezuelan
+  - action: utter_more_help
+
+- story: regularization_if_enter_by_irregular_trail
+  steps:
+  - intent: seek_for_regularization
+    entities:
+    - irregular_status: trocha
+  - action: utter_irregular_trail
+  - action: utter_more_help
+
+- story: regularization_if_enter_by_irregular_trail
+  steps:
+  - intent: seek_for_regularization
+    entities:
+    - passport: pasaporte
+  - action: utter_get_passport
+  - action: utter_more_help
+
+- story: user_needs_update_pep
+  steps:
+  - intent: update_pep
+  - action: utter_update_pep
+  - action: utter_more_help
+
+- story: you_are_outdated
+  steps:
+  - intent: statute_general_info
+  - slot_was_set:
+    - requested_slot: old_permit
+  - action: utter_update_permit
+  - intent: no_answer
+  - action: utter_more_help
+
+- story: you_are_outdated_and_more_info
+  steps:
+  - intent: statute_general_info
+  - slot_was_set:
+    - requested_slot: old_permit
+  - intent: yes_answer
+  - action: utter_more_info_in_update
+  - action: utter_more_help
+  
+# - story: emergency_story_sexual_violence
+#   steps:
+#   - intent: emergency_report
+#     entities:
+#     - emergency_type: sexual_violence
+#   - slot_was_set:
+#     - emergency_type: sexual_violence
+#   - action: emergency_form
+#   - active_loop: emergency_form
+#   # - slot_was_set:
+#   #   - emergency_type: sexual_violence
+#   - slot_was_set:
+#     - requested_slot: location
+#   - slot_was_set:
+#     - lat_lon: 2.04678875,-71.36064631613256
+#   - slot_was_set:
+#     - location:
+#       - El Retorno
+#       - Guaviare
+#   - slot_was_set:
+#     - lat_lon: 2.04678875,-71.36064631613256
+#   - slot_was_set:
+#     - requested_slot: null
+#   - active_loop: null
+#   - action: action_emergency_service
+#   - intent: goodbye
+#   - action: utter_goodbye

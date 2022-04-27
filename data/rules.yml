@@ -1,0 +1,36 @@
+version: "3.1"
+
+rules:
+
+- rule: Say hello anytime the user says talk to the bot
+  steps:
+  - intent: greetings
+  - action: utter_greet
+
+- rule: Say goodbye anytime the user says goodbye
+  steps:
+  - intent: goodbyes
+  - action: utter_goodbye
+
+- rule: Ask the user to rephrase whenever they send a message with low NLU confidence
+  steps:
+  - intent: nlu_fallback
+  - action: utter_please_rephrase
+  # - intent: nlu_fallback
+  # - action: human_agent_call
+
+- rule: Activate emergency forms
+  steps:
+  - intent: emergency_report
+  - action: emergency_form
+  - active_loop: emergency_form
+
+- rule: Submit form
+  condition:
+  - active_loop: emergency_form
+  steps:
+  - action: emergency_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: action_emergency_service

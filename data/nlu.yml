@@ -1,0 +1,835 @@
+version: "3.1"
+
+nlu:
+
+- intent: emergency_report
+  examples: |
+    - Necesito [atención medica](health_attention) tengo una urgencia
+    - Auxilio tengo una [emergencia medica](emergency_type) con mi hijo
+    - Necesito ayuda tengo que ir a un medico
+    - Necesito ayuda tengo que ir a un doctor
+    - Me pueden ayudar me tiene que atender rapido un doctor
+    - necesito [atención médica](health_attention) con urgencia ayudenme
+    - Hola nani como estas necesito de tu ayuda resulta que mi hijo se cayo por las escaleras y se dio un golpe muy fuerte en el brazo estoy [desesperada](emergency_type) siento que se lo [fracturado](emergency_type) ayudame
+    - que puedo hacer si tengo una urgencia medica y no tengo sisben ni eps
+    - ayudenme porfavor amigos voices estoy pasando por una situación critica en mi estado de salud tengo una urgencia y no se a donde acudir
+    - Hola nani estoy presentando una emergencia mi pareja me [golpea](emergency_type) y me amenazó de muerte no se que aser a dónde puedo acudir
+    - Nani un familiar sufrió un [accidente](emergency_type) no tenemos EPS a dónde podemos llevarlo para que reciba atención médica
+    - Ayudenme estoy pasando por una situacion con mis hijos necesito que los vea un doctor
+    - Me detectaron [cancer](chronic_diseases) y necesito recibir [quimioterapia](medical_treatment)
+    - Nani tengo miedo mi vecinos me [amenazaron](emergency_type) de golpearme y no se a donde ir por ayuda aconsejame que puedo hacer
+    - Fui [abusada](emergency_type) sexualmente tengo miedo de que me puedan [violar](emergency_type) de nuevo
+    - Necesito operarme con urgencia pero no tengo EPS estoy indocumentado en dónde puedo recibir ayuda
+    - Estoy [retenida](emergency_type) por un grupo de personas contra mi voluntad
+    - Fui [violada](emergency_type)
+    - Mi casa fue [robada](emergency_type)
+    - Ayuda fui [secuestrado](emergency_type)
+    - mi papa tuvo un [derrame](emergency_type) cerebral
+    - me caí por las escaleras y me [quebré la pierna](emergency_type)
+    - Tengo una emergencia
+    - Mi mama esta [seriamente enferma](emergency_type)
+    - Me [hirieron](emergency_type)
+    - [acosaron](emergency_type) a mi hermana
+    - a mi hermano lo [asaltaron](emergency_type) cerca de [San José del Guaviare](location), [Guaviare](location)
+    - mi hermana fue [maltratada](emergency_type) en [La Libertad](location), [El Retorno](location), [Guaviare](location)
+
+- intent: sisben_affiliation
+  examples: |
+    - puedo registrarme al [sisben](sisben) con la cedula venezolana
+    - puedo registrarme en salud si no tengo permiso
+    - puedo registrarme al [sisben](sisben) si estoy ilegal
+    - me puedo afiliar al [cisben](sisben) si no tengo permiso
+    - Hola Nani como estas quisiera preguntarte que necesito para registrarme en el [SISBEN](sisben) y si puedo con mi cédula venezolana
+    - hola saben si puedo afiliarme al [sisben](sisben) con mi [cedula](venezuelan_id) muchas gracias
+    - una pregunta me puedo afiliar al [sisben](sisben) con la [cedula venezolana](venezuelan_id)
+    - hola como estan ustedes gracias por siempre orientarnos disculpa una pregunta como puedo hacer para [afiliarme](affiliation) al [sisben](sisben) si solo tengo cédula venezolana
+    - como me afilio al [sisben](sisben)
+    - como [registro](registration) a mi hijo en el [sisben](sisben)
+    - a que [sistema de salud](heatlh_institutions) puedo [vincularme](affiliation)
+    - como puedo tener un [seguro social](heatlh_institutions) en Colombia
+    - una pregunta me puedo [afiliar](affiliation) al [sisben](sisben) con la [cedula venezolana](venezuelan_id)
+    - como puedo ser parte de la [seguridad social](health_institution) en colombia
+    - buenas tardes como puedo tener [sisben](sisben)
+    - hola quisiera informacion del [sisben](sisben) como hago para [afiliarme](affiliation)
+    - Buen dia que requisitos piden para [registrarse](registration) en el [sisben](sisben)
+    - Hola Nani DTB quisier saber como puedo hacer para [registrarme](registration) en el [sisben](sisben)
+    - como es el proceso para [afiliarme](affiliation) al [sisben](sisben) y que requisitos necesito muchas gracias
+    - donde hay censos para afiliarse al sisben
+    - Cómo se realiza la [afiliación](affiliation) de Población perteneciente a grupos indígenas que comparten frontera con Colombia?
+    - Es posible para un venezolano acceder a la aplicación de la encuesta del SISBEN?
+    - Cuál es el proceso para ingresar al [Sisbén](sisben)?
+
+- intent: EPS_affiliation
+  examples: |
+    - Como me puedo afiliar a una [eps](eps)
+    - En mi trabajo me quieren asegurar con la cedula venezolana se puede
+    - como puedo asegurarme en colombia
+    - como puedo tener un seguro en colombia
+    - Buenos dias amigos de voices quisiera saber si ustedes me pueden orientar en como me puedo [afiliar](affiliation) a una [eps](eps)
+    - que necesito hacer para [afiliarme](affiliation) a una [eps](eps)
+    - buenas tardes tiene conocimiento de como es que uno se puede [afiliar](affiliation) a una [eps](eps)
+    - disculpen como me puedo [registrar](registration) en una [eps](eps) y qué necesito
+    - Cómo se realiza la [afiliación](affiliation) de los [recién nacidos](priority_population) en territorio colombiano cuando los padres no están afiliados?
+    - Como accedo a los servicos de [EPS](eps)
+    - Sabes que es una [EPS](eps)?
+    - Quiero [afiliarme](affiliation) a la [EPS](eps)
+    - Ncesito acceder a los servicos de la [EPS](eps)
+    - Como puedo acceder a una [EPS](eps)
+    - Cuales son las [EPS](eps) a las que me puedo afiliar?
+
+- intent: vaccination
+  examples: |
+    - Hola donde le estan poniendo las vacunas a los venezolanos
+    - A donde puedo llamar para las vacunas
+    - Cómo hace mi esposo para vacunarse
+    - A donde puedo ir para vacunarse contra el [COVID](covid)
+    - estan vacunando a los venezolanos irregulares
+    - Buenas tardes disculpen tienen conocimiento de en donde estan vacunando a los venezolanos
+    - Mi nombre es yasmely abreu quiciera saber sobre la vacunación y si pueden venir a mi casa gracias
+    - Yo tengo 58 años y tengo 3 años aquí como hago para la vacuna
+    - para vacunar a un [niño](priority_population) a donde tendria que ir
+    - Hola buenas tardes quiero vacunar a mi [bebé](priority_population) y no he podido ya tiene tres meses estoy en cucuta
+    - buenas noches deseo vacunar a mi [hijo](priority_population) pero no cuento con sisben como podria
+    - me podrian dar informacion sobre la vacunas tengo dos [niños](priority_population) de 6 y 2 años Soy migrante Venezolana me encuentro en cucuta
+    - Hola quiero vacunar a mis [niños](priority_population)
+    - Como vacuno a mi [bebé](priority_population)
+    - quiero saber como hago para las vacunas de mi [nieta](priority_population) que tiene 7 meses y le faltan varias tiene 30 dias aca en cali
+    - Mi [bebé](priority_population) nació áqui le estaba tramitando el sisben pero a causa de la pandemia no termine los trámites y me urge colocarle la vacuna del 1 añito donde puedo ir a q me le coloquen la vacuna por favor
+
+- intent: eviction
+  examples: |
+    - por favor ayuda nos estan sacando del lugar donde pagamos arriendo de mala manera y con [amenazas](emergency_type)
+    - quiero información mi nombre es doris aular dobde puedo dirigirme porque nos están mandando a desalojar somos dos mujeres más mi madre de la tercera edad y menores d 4 y 2años
+    - quiero información mi nombre es carmen quiero saber sobre el arriendo es mucho lo que se paga acá y no tengo me manda a desalojar y no tengo dónde ir me puede ayudar
+    - no cuento con ningún tipo de ayuda o trabajo y me quieren desalojar del lugar donde vivo ya que no tengo como pagar un arriendo
+
+- intent: statute_general_info
+  examples: |
+    - que es eso del [estatuto](temporal_migratory_statute)
+    - como es el [nuevo proceso](temporal_migratory_statute) para venezolanos
+    - como puedo estar legal en colombia
+    - que estan haciendo para que los venezolanos esten legales aca
+    - hola mami buenos dias me podrias orientar de que trata ese [nuevo proceso](temporal_migratory_statute) para los venezolanos el que mencionaste en tu en vivo un nuevo estatuto
+    - hola me puedes explicar como es el proceso del [estatuto](temporal_migratory_statute)
+    - buenos dias nani gracias por siempre informarnos disculpa me puedes orientar mejor que es eso del [estatuto](temporal_migratory_statute)
+    - como tramitar el [estatuto](temporal_migratory_statute)
+    - como saco el [nuevo permiso](temporal_migratory_statute)
+    - como puedo ser [parte del estatuto](temporal_migratory_statute)
+    - que puedo hacer para tener el [nuevo permiso](temporal_migratory_statute)
+    - como es el proceso para el [estatuto](temporal_migratory_statute)
+    - Buenos dias amigos de voices como es el proceso para el [estatuto](temporal_migratory_statute)
+    - Hola nani me explicas que debo hacer para ser parte del [estatuto](temporal_migratory_statute)
+    - hola disculpen me podrian orientar en como es el proceso para el nuevo [estatuto](temporal_migratory_statute)
+    - me puedes regalar información sobre como puedo obtener el [pep](old_permit)
+    - hola que es el [pep](old_permit)
+    - como puedo obtener el [pep](old_permit)
+    - como saco el [pep](old_permit)
+    - Quiero obtener el [p e p](old_permit)
+
+- intent: yes_answer
+  examples: |
+    - si porfa
+    - si xfa
+    - si te lo agradecería
+    - si
+    - si tengo
+
+- intent: statute_second_step
+  examples: |
+    - que es la segunda fase
+    - de que trata la segunda fase
+    - que es eso de segunda fase
+    - a que se refieren con al segunda fase
+    - nani no entiendo que es eso de la segunda fase yo ya hice mi [RUMV](rumv) esa es la segunda fase
+    - a donde hay que ir para la segunda fase
+
+- intent: statute_third_step
+  examples: |
+    - que es la tercera fase
+    - Cómo conseguir información sobre el tercer paso del estatuto
+    - Dónde podemos conseguir información sobre el tercer paso del estatuto
+    - Cómo obtener información sobre el tercer paso del estatuto
+    - Cómo pueden mis hijos encontrar información sobre el tercer paso del [estatuto](temporal_migratory_statute)
+    - Dónde puedo obtener información sobre el tercer paso del estatuto
+    - Dame información sobre la tercera etapa del estatuto por favor
+    - Quiero información sobre la tercera etapa del estatuto
+    - Tenemos que conseguir información sobre la tercera etapa del estatuto
+    - Tengo que obtener información sobre la tercera etapa del estatuto
+    - Mis hijos tienen que obtener información sobre la tercera etapa del estatuto
+    - Necesito información sobre el tercer paso del estatuto
+    - Necesitamos información sobre el tercer paso del estatuto
+    - Estatuto tercer paso
+    - Estatuto tercera etapa
+    - Información sobre el tercer paso del estatuto por favor
+    - Información sobre la tercera etapa del estatuto
+    - que es la tercera fase
+    - de que trata la tercera fase
+    - que es eso de tercera fase
+    - a que se refieren con al tercera fase
+    - nani no entiendo que es eso de la tercera fase yo ya hice mi RUMV esa es la tercera fase
+    - a donde hay que ir para la tercera fase
+
+- intent: inform_regular_status
+  examples: |
+    - cuento con el pasaporte
+    - [no selle](irregular_status) pasaporte
+
+- intent: entry_date
+  examples: |
+    - yo llegue a Colombia el [año pasado](time_expression)
+    - yo entre [hace dos meses](time_expression)
+    - ingrese [antes](time_expression)
+    - [despues](time_expression) del 31
+
+- intent: no_summary_proof
+  examples: |
+    - que puedo hacer si no tengo ninguno de esos documentos
+    - yo estaba antes del 31 pero no tengo documentos para demostrarlo
+    - yo no tengo nada de eso
+    - y que puedo hacer si no cuento con ninguno de esos documentos
+    - y si no tengo como demostrar mi estadia que hago
+    - que hago si no tengo nada de eso
+    - me puedes decir que puedo hacer si no tengo ningun documento de esos
+    - ayudame nani no tengo nada de eso que puedo hacer en ese caso
+
+- intent: rumv_specific_info
+  examples: |
+    - Desde [ayer](time_expression) me registre y no me a llegado el permiso
+    - ya me registre en el [rumv](rumv) y ahora [cuando](time_question) me dan el permiso
+    - hola disculpa despues de que me haya registrado en el [rumv](rumv) [cuando](time_question) me dan el permiso
+    - [cuando](time_question) me dan el permiso si ya me registre en el [rumv](rumv)
+    - buenos dias quisiera saber [cuando](time_question) me dan el [permiso](temporal_migratory_statute) si ya me registren en el [rumv](rumv)
+    - Hola Nani ya fui a mi [cita biométrica](biometric_appointment) en [cuanto tiempo](time_question) me daran el [permiso](temporal_migratory_statute) es que enserio lo necesito porque tengo que afiliar a mis hijas a salud
+    - Hola amigos de voices tengo una duda y ustedes siempre me responden queria saber en [cuanto tiempo](time_question) me daran el [permiso](temporal_migratory_statute) si ya yo fui a mi [cita biometrica](biometric_appointment) es que necesito trabajar
+    - Buenos dias ayer acudi a mi [cita biometrica](biometric_appointment) queria saber [en que tiempo](time_question) me daran el permiso
+    - sabras [en que tiempo](time_question) me dan el permiso si ya fui a la [cita biometrica](biometric_appointment)
+    - Informacion a los [niños](priority_population) también hay que agendarle [cita](generic_appointment)
+    - Buen dia alos [niños](priority_population) se le sacan [cita](generic_appointment)
+    - a la [cita](generic_appointment) debo ir solo o con los [hijos](priority_population)
+    - Hola nani buenas tardes como estas nani una pregunta a mi [hijo](priority_population) menor de 7 años le debo agendar [cita](generic_appointment)
+    - buenas tardes amigos como es el proceso de agendamiento de [cita](generic_appointment) para los [niños](priority_population)
+    - hola sera que me pueden sacar de una duda es que quisiera saber si a los [niños](priority_population) hay que agendarle cita para el [biometrico](biometric_appointment)
+    - los [niños](priority_population) van a ir al sistema de [biometria](biometric_appointment)
+    - es necesario que lleve a mis [hijos](priority_population) al proceso [biometrico](biometric_appointment)
+    - Nani qe debo hacer tengo que llevar conmigo a mis [hijos](priority_population) para la [cita biometrica](biometric_appointment)
+
+- intent: invalid_rumv
+  examples: |
+    - que puedo hacer el [rumv](rumv) no me lo acepta para pedir la [cita](generic_appointment)
+    - que hagos si no me deja pedir la [cita](generic_appointment) porque el [rumv](rumv) no me lo acepta
+    - ayudaaa nani el [rumv](rumv) no me quiere agarrar para pedir la [cita](generic_appointment)
+    - buenas tardes disculpa la molestia que puedo hacer si el [rumv](rumv) no me permite agendar la [cita](generic_appointment) estoy intentando dede hace días y nada
+    - hola buenos días que puedo hacer si no me deja agendar [cita](generic_appointment)
+    - tengo problemas para agendar la cita que puedo hacer
+
+- intent: rumv_wrong_password
+  examples: |
+    - No me quiere a asentar la [contraseña](password)
+    - Hola buenas noche me quiero registrar en el censo y me pide una contraseña pero las q coloco no me las acepta
+    - Hola nany nesecito ayuda desde ayer estoy intentando registrarme y no he podido cuando yego en la contraseña me sale incorrecta
+    - Hola como hago la [contraseña](password) para que me la acepte estoy intentando registrarme desde ayer y nada
+    - Hola buenos dias Voices que puedo hacer si cuando me quiero registrar no me acepta la contraseña
+    - Hola lo q pasa es en registro no me hacepta la contraseña cómo debo colocar
+
+- intent: rumv_invalid_appointment
+  examples: |
+    - Hola nani como estas sabes que estoy intentando agendar una cita pero me dice que ya tengo una y no es cierto que puedo hacer
+    - Buenas tardes que puedo hacer si me dice que tengo una cita agendada y realmente no es así
+    - dice que ya su cita fue agendada
+    - ya aparece con la [cita](generic_appointment) agendada
+    - No le he podido sacar la cita a mi cuando trato de agendarsela me sale que ya tiene una cita agendada para el mismo trámite
+
+- intent: rumv_invalid_docs
+  examples: |
+    - Hola como hago para cargar los documentos no me pasa
+    - Mira q ya tengo casi todo listo pero no me deja cargar los documentos
+    - Solo deja cargar dos documentos pero pide tres que puedo hacer
+    - Necesito que me ayuden a cargar mis documentos no se como hacer
+    - auxilio no me deja cargar los documentos
+    - Hola nani como estas como puedo hacer si la pagina no me deja avanzar me quedo en la parte de los documentos
+    - Buenas tardes ustedes me podrian ayudar es que no me deja cargar los documentos que puedo hacer
+    - Hola amigos de voices que puedo hacer si no me deja cargar los documentos estoy estancada ahi
+    - la pagina no me avanza desde los documentos que hago ayudaaaa
+
+- intent: statute_non_venezuelan
+  examples: |
+    - si tengo nacionalidad venezolana e [italiana](citizenship) puedo obtener el estatuto
+    - si mi hijo nació en peru puede tener el estatuto
+    - Hola Nani tengo un amigo que es venezolano y también [italiano](citizenship) el puede ser parte del estatuto
+    - Hola amigos de Voices tengo una duda resulta que mi esposo y yo vivíamos antes en peru y tuvimos a nuestra niña allá ahora nos vinimos a Colombia y queremos estar legales aca mi hija podría ser parte del estatuto
+
+- intent: seek_for_regularization
+  examples: |
+    - yo pase por [trocha](irregular_status) como puedo tener un permiso para trabajar
+    - yo [no selle](irregular_status) mi pasaporte puedo tener el nuevo permiso
+    - quiero tener el nuevo permiso pero yo pase por [trocha](irregular_status)
+    - hola como estan yo pase por [trocha](irregular_status) como hago para tener algun permiso
+    - necesito tener algun permiso yo pase por [trocha](irregular_status) como puedo hacer
+    - Donde queda la embajada venezolana para sacar el [pasaporte](passport)
+    - Se me vencio mi [pasaporte](passport) como puedo sacarlo de nuevo
+    - Quiero sacar el [pasaporte](passport) por primera vez
+    - No tengo [pasaporte](passport) y lo Quiero sacar
+    - A Donde puedo ir para sacar el [pasaporte](passport) por primera vez en Colombia
+    - como puedo tramitar la prorroga de mi [pasaporte](passport)
+    - regularizarse con [pasaporte](passport)
+    - regularizarse sin pasaporte
+    - como puedo estar legal en colombia
+    - salir de Colombia
+    - algún documento para poder trabajar
+    - que tipo de censo estan haciendo para los venezolanos
+    - Cómo obtener la documentación necesaria para permanecer en Colombia?
+    - Cuál es la manera de adquirir la nacionalidad colombiana y cuáles son los requisitos que deben seguir para adoptar la nacionalidad?
+    - Cómo obtener la nacionalidad colombiana de un menor de edad nacido en Venezuela, pero con un padre o madre colombiana?
+    - En qué casos los hijos de los padres venezolanos nacidos en Colombia pueden obtener la nacionalidad colombiana?
+    - Qué tienen que hacer los venezolanos hijos de padres que eran colombianos y fallecieron en Venezuela para obtener la nacionalidad colombiana?
+    - Puede un venezolano regularizar su situación migratoria a través del matrimonio o la unión marital con un colombiano/a?
+    - Cuál es el procedimiento a seguir en la Registraduría para sacar el Registro Civil de Nacimiento?
+    - A qué beneficios podrían acceder al legalizarme?
+    - Cómo se debe hacer la repatriación del cuerpo de un venezolano que murió en Colombia?
+
+- intent: update_pep
+  examples: |
+    - tengo mi pep vencido necesito renovarlo
+    - mi pep Se venció en diciembre del año pasado necesito renovarlo
+    - como puedo renovar mi pep
+    - mi pep esta vencido que puedo hacer
+
+- intent: punto_visible
+  examples: |
+    - donde me queda un punto visible
+    - Donde puedo ubicar un punto visible en
+    - en donde estoy hay punto visible
+    - sabes Donde me queda un punto visible
+    - seria tan amable de decirme Donde me queda un punto
+    - me podria pasar la direccion del punto visible mas cercano
+    - porfa me puede pasar las direcciones de los puntos visibles en
+    - en que parte de la pagina de migracion puedo ver la direccion de los puntos visibles
+    - Necesito saber donde quedan lo puntos visibles aqui en o donde estaran ubicados para q me ayuden con el registro unico ya q no cuento con internet y tampoco se mucho de tecnologia gracias de ante mano
+    - Porfavor me podría decir Donde van A estar los puntos de apoyo
+
+- intent: get_legal_assistance
+  examples: |
+    - Estoy siendo explotado laboralmente mi jefe no me quiere pagar que puedo hacer nani
+    - Cómo conseguir [asistencia jurídica](legal_issue)
+    - Cómo conseguimos yo y mi familia asistencia legal
+    - Cómo tener asistencia judicial
+    - Cómo obtener asesoramiento legal
+    - Dónde podemos conseguir un abogado para mis padres
+    - Cómo obtener asistencia judicial para mis hijas
+    - Cómo puedo conseguir un abogado para mi esposa
+    - Cómo podemos encontrar ayuda judicial para mis amigos
+    - Cómo pueden mis hermanos conseguir ayuda legal
+    - Cómo pueden mis hijos recibir apoyo legal
+    - Asistencia jurídica para mi esposa
+    - Asistencia legal para mi esposo
+    - Para mi hermana asistencia letrada
+    - Para mi familia y yo asesoría legal
+    - Un abogado por favor
+    - Mi amiga necesita asistencia jurídica
+    - Dónde puedo obtener apoyo legal para mis hijos
+    - Entidades de ayuda judicial
+    - Dame entidades de asesoría legal por favor
+    - Encuentra entidades de asistencia judicial
+    - Tenemos que conseguir [ayuda judicial](legal_issue)
+    - Tengo que obtener asesoría legal
+    - Mis hijos tienen que obtener ayuda legal
+    - Mi familia necesita asistencia judicial
+    - Mis padres tienen que conseguir asesoramiento legal
+    - Mi familia tiene que obtener asistencia judicial
+    - Hay que obtener ayuda legal
+    - Debemos obtener asesoría legal
+    - Necesito asesoría legal
+    - Necesitamos ayuda legal
+    - ayuda legal
+    - asesoramiento legal por favor
+    - Qué debe hacer un venezolano si se siente agredido o [vulnerado en sus derechos](legal_issue)?
+    - Cómo acudir a autoridades colombianas pidiendo protección si [me siento agredido](legal_issue) por la Fuerza Pública?
+    - Cómo se debe presentar un [derecho de petición](legal_issue)?
+    - Si el [derecho de petición](legal_issue) no presenta la información completa, puede la entidad rechazarlo?
+    - Qué es la [acción de tutela](legal_issue)?
+    - Para qué sirve la [acción de tutela](legal_issue)?
+    - Se pueden proteger otros [derechos](legal_issue) que no sean fundamentales?
+    - Cuáles son los requisitos para presentar una [acción de tutela](legal_issue)?
+    - Quiénes pueden presentar una [acción de tutela](legal_issue)?
+    - Si hay una persona en condición de desamparo o incapaz de defenderse?
+    - Contra quién se presenta una [tutela](legal_issue)?
+    - Cuándo y dónde se puede presentar la [acción de tutela](legal_issue)?
+    - Cuánto tiempo se demora la [sentencia](legal_issue) de [tutela](legal_issue)?
+    - Qué debe contener la [demanda](legal_issue) de [acción de tutela](legal_issue)?
+    - Cuándo NO se puede presentar una [acción de tutela](legal_issue)?
+    - Dónde se puede recibir asistencia gratuita para la elaboración de una [acción de tutela](legal_issue)?
+
+- intent: migration_routes
+  examples: |
+    - Cómo llegar a [Santander](location)
+    - Cómo llegar a [Norte de Santander](location)
+    - Cómo llegar a [Guajira](location)
+    - Cómo llegar a [Paraguachon](location)
+    - Cómo llegar a [Santander](location)
+    - ¿Cómo llegamos mi familia y yo a [Santander](location)?
+    - ¿Cómo llegamos mi familia y yo a [Norte de Santander](location)?
+    - ¿Cómo llegamos mi familia y yo a La [Guajira](location)?
+    - ¿Cómo llegamos mi familia y yo al [punto de control](specific_place) de [Guajira](location)?
+    - ¿Cómo llegamos mi familia y yo a [Santander](location)?
+    - ¿Cómo llego a [Santander](location)?
+    - ¿Cómo llego a [Guajira](location)?
+    - ¿Cómo llego al [punto de control](specific_place) [Guajira](location)?
+    - ¿Cómo llego a [Arauca](location)?
+    - ¿Cómo llegamos a [Santander](location)?
+    - ¿Cómo llegamos a [Norte de Santander](location)?
+    - ¿Cómo llegamos a La [Guajira](location)?
+    - ¿Cómo llegamos a [Jose Antonio Paez](specific_place)?
+    - ¿Cómo llegamos al puente de [Jose Antonio Paez](specific_place)?
+    - ¿Cómo llegamos a [Santander](location)?
+    - Tenemos que ir a [Santander](location)
+    - Tenemos que ir a [Norte de Santander](location)
+    - Tenemos que ir a La [Guajira](location)
+    - Tenemos que ir a [Cauca](location)
+    - Tenemos que ir a la [Valle del Cauca](location)
+    - Tenemos que ir a [Nariño](location)
+    - Tengo que ir a [Norte de Santander](location)
+    - Tengo que ir a [Putumayo](location)
+    - Tengo que ir a [Cordoba](location)
+    - Tengo que ir a [Choco](location)
+    - Mis hijos tienen que ir a [Norte de Santander](location)
+    - Mi familia tiene que ir a [Argelia](location)
+    - Mis padres tienen que ir a [Bogotá](location)
+    - Mi familia tiene que ir a Colombia
+    - Hay que ir al [punto de control](specific_place) de [Guajira](location)
+    - Debemos ir al [punto de control](specific_place) de [Guajira](location)
+
+- intent: greetings
+  examples: |
+    - hola
+    - buenas tardes
+    - buenas noches
+    - buenos días
+    - saludos
+    - buenas
+
+- intent: goodbyes
+  examples: |
+    - hasta luego
+    - adios
+    - feliz noche
+    - feliz dia
+    - feliz tarde
+    - chao
+    - hasta pronto
+
+- intent: giving_location
+  examples: |
+    - Estoy actualmente en la [Vrda el recreo](location), [inspección](location), [La Libertad](location), [El Retorno](location), [Guaviare](location), [Colombia](location)
+    - la última vez que vi a mi hermana fue en la [Vda. Las Acacias](location), [Las Acacias](location), [El Retorno](location), [Guaviare](location), [Colombia](location)
+    - el debería estar cerca de [San José del Guaviare](location), [Guaviare](location)
+    - Estoy cerca de la [Finca Calabozo](location), [San José del Guaviare](location), [Guaviare](location)
+    - Mi casa es en [Cumaribo](location), [Vichada](location)
+    - eso pasó en [Cumaribo](location), [Vichada](location)
+    - sucedió en [El Retorno](location), [Guaviare](location)
+
+- intent: human_agent
+  examples: |
+    - no quiero hablar con el bot
+    - agente
+    - asesor
+    - asesor
+    - con quien puedo hablar
+    - hablar con un asesor
+    - hablar con una persona
+    - necesito hablar con alguien
+    - necesito hablar con un humano
+    - paseme a un asesor
+    - quiero hablar con un asesor
+    - que me atienda un asesor
+
+- intent: accomodation_or_shelter
+  examples: |
+    - Cuál es el rol de ACNUR dentro del proceso de solicitud de refugio?
+    - Cuáles son las acciones humanitarias que brinda Colombia a los venezolanos y colombianos retornados?
+    - Cómo acceder a un alojamiento temporal y Dónde están ubicados?
+
+- intent: medical_assistance
+  examples: |
+    - Cuáles son los mecanismos de [atención en salud](health_attention) definidos en Colombia para los inmigrantes en tránsito o en [situación irregular](irregular_status)?
+    - Cómo pueden acceder en Colombia, los [inmigrantes irregulares](irregular_status) a otros [servicios de salud](health_attention) no descritos antes?
+    - Dónde puedo obtener información adicional para acceso a [servicios de salud](health_attention)?
+
+- intent: education
+  examples: |
+    - Cómo pueden acceder al servicio educativo los [niños y adolescentes](priority_population) venezolanos?
+    - Cómo hacer para que le valgan a [mi hijo](priority_population) los estudios cursados en Venezuela?
+    - [Los niños y adolescentes](priority_population) venezolanos [irregulares](irregular_status) en Colombia pueden acceder al sistema educativo colombiano?
+    - Puede un joven que estaba cursando estudios universitarios en Venezuela continuar sus estudios en Colombia?
+    - Cómo homologar y/o convalidar los títulos de educación superior obtenidos en Venezuela?
+
+- intent: employment
+  examples: |
+    - Qué deben hacer los venezolanos para poder trabajar?
+    - Cuáles son los requisitos para la expedición de la visa de trabajo?
+    - Qué debe tener en cuenta una empresa o persona para contratar a un venezolano?
+
+- intent: bank_services
+  examples: |
+    - Cómo puede un venezolano acceder a una cuenta bancaria?
+
+- intent: contact_info
+  examples: |
+    - Tienes algun directorio de servicios a Población Migrante en Bogota
+
+- intent: no_answer
+  examples: |
+    - no
+    - no nani
+    - no me refiero a eso
+    - eso no
+    - no es eso
+
+- lookup: health_attention
+  examples: |
+    - atención medica
+    - atención médica
+    - atención en salud
+    - servicios de salud
+
+- lookup: emergency_type
+  examples: |
+    - emergencia medica
+    - fracturado
+    - desesperada
+    - amenazas
+    - golpea
+    - accidente
+    - amenazaron
+    - violar
+    - abusada
+    - retenida
+    - violada
+    - robada
+    - secuestrado
+    - derrame
+    - quebré la pierna
+    - seriamente enferma
+    - hirieron
+    - acosaron
+    - asaltaron
+    - maltratada
+
+- lookup: sisben
+  examples: |
+    - sisben
+    - cisben
+    - SISBEN
+    - Sisbén
+
+- lookup: venezuelan_id
+  examples: |
+    - cedula
+    - cedula venezolana
+
+- lookup: affiliation
+  examples: |
+    - afiliarme
+    - vincularme
+    - afiliar
+    - afiliación
+
+- lookup: registration
+  examples: |
+    - registro
+    - registrarse
+    - registrarme
+    - registrar
+
+- lookup: heatlh_institutions
+  examples: |
+    - sistema de salud
+    - seguro social
+
+- lookup: health_institution
+  examples: |
+    - seguridad social
+
+- lookup: eps
+  examples: |
+    - eps
+    - EPS
+
+- lookup: covid
+  examples: |
+    - COVID
+
+- lookup: priority_population
+  examples: |
+    - niño
+    - bebé
+    - hijo
+    - niños
+    - nieta
+    - hijos
+    - recién nacidos
+    - niños y adolescentes
+    - mi hijo
+    - Los niños y adolescentes
+
+- lookup: temporal_migratory_statute
+  examples: |
+    - estatuto
+    - nuevo proceso
+    - nuevo permiso
+    - parte del estatuto
+    - permiso
+
+- lookup: rumv
+  examples: |
+    - RUMV
+    - rumv
+
+- lookup: time_expression
+  examples: |
+    - año pasado
+    - hace dos meses
+    - antes
+    - despues
+    - ayer
+
+- lookup: time_question
+  examples: |
+    - cuando
+    - cuanto tiempo
+    - en que tiempo
+
+- lookup: biometric_appointment
+  examples: |
+    - cita biométrica
+    - cita biometrica
+    - biometrico
+    - biometria
+
+- lookup: generic_appointment
+  examples: |
+    - cita
+
+- lookup: password
+  examples: |
+    - contraseña
+
+- lookup: citizenship
+  examples: |
+    - italiana
+    - italiano
+
+- lookup: irregular_status
+  examples: |
+    - trocha
+    - no selle
+    - situación irregular
+    - inmigrantes irregulares
+    - irregulares
+
+- lookup: passport
+  examples: |
+    - pasaporte
+
+- lookup: old_permit
+  examples: |
+    - pep
+    - p e p
+
+- lookup: medical_treatment
+  examples: |
+    - quimioterapia
+
+- lookup: chronic_diseases
+  examples: |
+    - cancer
+
+- lookup: location
+  examples: |
+    - Santander
+    - Norte de Santander
+    - Guajira
+    - Paraguachon
+    - Arauca
+    - Cauca
+    - Valle del Cauca
+    - Nariño
+    - Putumayo
+    - Cordoba
+    - Choco
+    - Argelia
+    - Bogotá
+    - Guaviare
+    - San José del Guaviare
+    - El Retorno
+    - La Libertad
+    - Colombia
+    - inspección
+    - Vrda el recreo
+    - Las Acacias
+    - Vda. Las Acacias
+    - Finca Calabozo
+    - Vichada
+    - Cumaribo
+
+- lookup: specific_place
+  examples: |
+    - punto de control
+    - Jose Antonio Paez
+
+- lookup: legal_issue
+  examples: |
+    - asistencia jurídica
+    - ayuda judicial
+    - vulnerado en sus derechos
+    - me siento agredido
+    - derecho de petición
+    - acción de tutela
+    - derechos
+    - tutela
+    - sentencia
+    - demanda
+
+- synonym: sexual_violence
+  examples: |
+    - rape
+    - rapes
+    - raped
+    - raping
+    - rapist
+    - child marriage
+    - child pregnacy marriage
+    - circumcised
+    - circumcision
+    - molest
+    - defile
+    - defiled
+    - defiles
+    - early marriage
+    - early pregnacy
+    - female genital mutilation
+    - female mutulator
+    - force marriage
+    - forced marriage
+    - forced to marry
+    - defiling
+    - follow
+    - follows
+    - following
+    - harass
+    - harasses
+    - harassed
+    - harassing
+    - harassment
+    - humiliate
+    - humiliates
+    - humiliated
+    - humiliating
+    - mistreat
+    - mistreats
+    - mistreated
+    - mistreating
+    - perve
+    - pervert
+    - perverted
+    - porn
+    - porno
+    - pornography
+    - sex work
+    - sex worker
+    - sexual abuse
+    - sexual assault
+    - sexual assaults
+    - sexually assault
+    - sexually assaults
+    - sexually assaulted
+    - sexually assaulting
+    - shaming
+    - spy
+    - spies
+    - spied
+    - spying
+    - stalk
+    - stalks
+    - stalked
+    - stalking
+    - stalker
+    - trafficks
+    - trafficked
+    - trafficking
+    - violate
+    - violates
+    - violated
+    - violating
+    - violation
+
+- synonym: crime
+  examples: |
+    - robo
+    - robado
+    - cuchillo
+    - puñal
+    - pistola
+    - secuestro
+    - secuestrado
+    - asaltado
+    - atracado
+    - asalto
+    - atraco
+    - atacado
+    - ataque
+    - agredido
+    - agresión
+    - puñalada
+    - puñaladas
+    - apuñalada
+    - golpe
+    - golpeado
+    - rehén
+    - hurto
+    - asesinado
+    - asesino
+    - asesinato
+    - homicidio
+    - chantaje
+    - chantajeado
+    - extorsión
+    - extorsionado
+    - soborno
+    - sobornado
+    - sobornos
+    - corrupción
+    - secuestrador
+    - tortura
+    - tortures
+    - torturado
+    - torturador
+
+- synonym: emotional_distress
+  examples: |
+    - sad
+    - tristeza
+    - depresión
+    - deprimido
+    - depression
+    - abuso emocional
+    - abusando emocionalmente
+    - estres emocional
+    - suicidio
+    - trauma
+    - traumatizado
+    - traumatizante
+
+- synonym: health_emergency
+  examples: |
+    - accidente
+    - accidentes
+    - heridas
+    - herida
+    - cortada
+    - sangrado
+    - brazo quebrado
+    - me quebré el brazo
+    - se rompió el brazo
+    - brazo roto
+    - pierna rota
+    - se quebró la pierna
